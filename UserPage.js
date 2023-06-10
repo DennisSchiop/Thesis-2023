@@ -8,9 +8,6 @@ import {
   Image,
 } from 'react-native';
 import { Camera } from 'expo-camera';
-import * as Permissions from 'expo-modules-core';
-
-
 
 const UserPage = () => {
   const [scanResult, setScanResult] = useState('');
@@ -24,15 +21,13 @@ const UserPage = () => {
   };
 
   const requestCameraPermission = async () => {
-    const { status } = await Camera.requestPermissionsAsync();
+    const { status } = await Camera.requestCameraPermissionsAsync();
     if (status !== 'granted') {
       alert('Sorry, we need camera permissions to make this work!');
       return false;
     }
     return true;
   };
-  
-  
 
   const openScanner = async () => {
     const hasPermission = await requestCameraPermission();
@@ -61,7 +56,7 @@ const UserPage = () => {
             onBarCodeScanned={handleScan}
             style={styles.camera}
             barCodeScannerSettings={{
-              barCodeTypes: [Camera.Constants.BarCodeType.qr],
+              barCodeTypes: [Camera.Constants.BarCodeType],
             }}
           />
           <TouchableOpacity style={styles.button} onPress={closeScanner}>
@@ -101,26 +96,26 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   subtitle: {
-  fontSize: 18,
-  fontWeight: 'bold',
-  textAlign: 'center',
-  marginBottom: 20,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 20,
   },
   button: {
-  backgroundColor: '#3498db',
-  padding: 10,
-  alignItems: 'center',
-  borderRadius: 5,
-  marginBottom: 20,
+    backgroundColor: '#3498db',
+    padding: 10,
+    alignItems: 'center',
+    borderRadius: 5,
+    marginBottom: 20,
   },
   buttonText: {
-  color: '#fff',
-  fontSize: 16,
+    color: '#fff',
+    fontSize: 16,
   },
   camera: {
-  height: 300,
-  width: '100%',
-  marginBottom: 20,
+    height: 300,
+    width: '100%',
+    marginBottom: 20,
   },
   galleryTitle: {
   fontSize: 20,

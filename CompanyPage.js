@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import QRCode from 'qrcode.react';
-
+import QRCode from 'react-native-qrcode-svg';
 const CompanyPage = () => {
   const [sneakerData, setSneakerData] = useState('');
 
@@ -15,7 +14,7 @@ const CompanyPage = () => {
         value={sneakerData}
       />
       {sneakerData ? (
-        <QRCode value={sneakerData} size={200} />
+        <QRCode value={sneakerData} size={200} /> 
       ) : (
         <Text style={styles.message}>Please enter sneaker data to generate a QR code</Text>
       )}
